@@ -1,0 +1,21 @@
+# Translations file for the English language
+command:
+  cannot_be_used_by_console: "This command cannot be used by the console. Sorry!"
+  cannot_edit_owner: "&4You cannot change the owner of the protection. Destroy the sign instead."
+  no_permission: "&4You don't have permission to execute this command. Sorry!"
+  plugin_reloaded: "&6Reloaded the configuration files!"
+protection:
+  bypassed: "&6You have just bypassed {0}'s protection."
+  can_only_add_protection_sign: "&4There can only be one [Private] signs on a protection. Other signs are not allowed."
+  cannot_change_sign: "&4You cannot change a sign nearby a claimed container."
+  block_hint: "&6Place a sign on this block to protect it."
+  claimed_block: "&6Claimed this block. Nobody else can access it."
+  claimed_manually: "&6Created a claim. Only the people allowed can access it."
+  is_claimed_by: "&6This block has been claimed by {0}."
+  no_access: "&4You cannot use this block, it is protected by {0}."
+  no_permission_for_claim: "&4You don't have permission to claim a container, sorry."
+  not_nearby: "&4There is no protectable block nearby. Right-click a block with a sign in your hand to protect it."
+tag:
+  everyone: "Everyone"
+  redstone: "Redstone"
+  private: "[Private]"

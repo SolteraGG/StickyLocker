@@ -1,0 +1,23 @@
+name: ${project.name}
+version: ${project.version}
+main: com.dumbdogdiner.stixillocker.StixilLockerPlugin
+authors:
+  - Vlad Frangu
+load: STARTUP
+api-version: 1.14
+permissions:
+  stixillocker.protect:
+    description: "Protect containers, doors and other utility blocks"
+    default: true
+  stixillocker.bypass:
+    description: "Bypass someone else's protection"
+    default: op
+  stixillocker.reload:
+    description: "Reload the plugin using /stixillocker reload."
+    default: op
+commands:
+  stixillocker:
+    description: "Reload the block locker plugin"
+    permission: "stixillocker.reload"
+    usage: "/<command> reload"
+    aliases: "sl"
