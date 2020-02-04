@@ -1,0 +1,6 @@
+com\dumbdogdiner\stixillocker\utils\Constants$ConfigKeys.class
+com\dumbdogdiner\stixillocker\enums\AttackType.class
+com\dumbdogdiner\stixillocker\enums\ProtectionType.class
+com\dumbdogdiner\stixillocker\pluginConfig\PluginConfig.class
+com\dumbdogdiner\stixillocker\StixilLockerPlugin.class
+com\dumbdogdiner\stixillocker\utils\Constants.class
