@@ -15,5 +15,10 @@ public final class Constants {
 		public static final String EVERYONE = "e";
 		public static final String REDSTONE = "r";
 		public static final String PLAYERS = "p";
+
+		public static final class PlayerKeys {
+			public static final String UUID = "uuid";
+			public static final String PLAYER_NAME = "name";
+		}
 	}
 }

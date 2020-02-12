@@ -1,8 +1,7 @@
 package com.dumbdogdiner.stixillocker.signs;
 
-import com.google.gson.JsonArray;
+import com.dumbdogdiner.stixillocker.StixilLockerPlugin;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -42,8 +41,11 @@ public class SignManager {
 	final Method WorldServer_getTileEntity;
 
 	private final JsonParser jsonParser = new JsonParser();
+	private StixilLockerPlugin plugin;
 
-	public SignManager() {
+	public SignManager(StixilLockerPlugin plugin) {
+		this.plugin = plugin;
+
 		String version = getMinecraftClassVersion();
 		nmsPrefix = "net.minecraft.server." + version + ".";
 		obcPrefix = "org.bukkit.craftbukkit." + version + ".";
@@ -81,12 +83,12 @@ public class SignManager {
 	public JSONSign getJsonData(World world, int x, int y, int z) {
 		// Get sign
 		Optional<?> nmsSign = toNMSSign(world, x, y, z);
-		if (nmsSign.isEmpty()) return JSONSign.EMPTY;
+		if (nmsSign.isEmpty()) return JSONSign.getEmpty(this.plugin);
 
 		Object sign = nmsSign.get();
 
 		Optional<String> secretData = getSecretData(sign);
-		if (secretData.isEmpty()) return JSONSign.EMPTY;
+		if (secretData.isEmpty()) return JSONSign.getEmpty(this.plugin);
 
 		// Find first line
 		Object firstLineObj = ((Object[]) retrieve(nmsSign.get(), TileEntitySign_lines))[0];
@@ -94,18 +96,18 @@ public class SignManager {
 
 		// Parse and sanitize the string
 		JsonElement data = jsonParser.parse(secretData.get());
-		if (data.isJsonObject()) return new JSONSign(firstLine, data.getAsJsonObject());
+		if (data.isJsonObject()) return new JSONSign(this.plugin, firstLine, data.getAsJsonObject());
 
-		return JSONSign.EMPTY;
+		return JSONSign.getEmpty(this.plugin);
 	}
 
-	public void setJsonData(Sign sign, JsonObject jsonObject) {
+	public void setJsonData(Sign sign, JSONSign jsonSign) {
 		Optional<?> nmsSign = toNMSSign(sign.getWorld(), sign.getX(), sign.getY(), sign.getZ());
 		if (nmsSign.isEmpty()) {
 			throw new RuntimeException("No sign at " + sign.getLocation());
 		}
 
-		setSecretData(nmsSign.get(), jsonObject.toString());
+		setSecretData(nmsSign.get(), jsonSign.toJSONString());
 	}
 
 	private Optional<?> toNMSSign(World world, int x, int y, int z) {
