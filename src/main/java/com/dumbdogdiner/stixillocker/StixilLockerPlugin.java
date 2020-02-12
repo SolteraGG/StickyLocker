@@ -23,7 +23,7 @@ public class StixilLockerPlugin extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		try {
-			this.signManager = new SignManager();
+			this.signManager = new SignManager(this);
 		} catch (Throwable t) {
 			this.getLogger().log(
 				Level.SEVERE,
